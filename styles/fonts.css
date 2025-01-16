@@ -1,3 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-Thin.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-ThinItalic.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-ThinItalic.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-Light.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-LightItalic.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-Regular.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-Italic.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-Bold.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-BoldItalic.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-Black.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slalom Sans';
+  src: url('../fonts/SlalomSans/SlalomSans-BlackItalic.woff2') format('woff2'), url('../fonts/SlalomSans/SlalomSans-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* stylelint-disable max-line-length */
 @font-face {
   font-family: roboto-condensed;

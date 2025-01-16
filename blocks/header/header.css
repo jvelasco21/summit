@@ -1,16 +1,21 @@
 /* header and nav layout */
+header {
+  position: absolute;
+}
+
 header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
+  background-color: transparent;
+  color: var(--white);
+  width: 100vw;
   z-index: 2;
-  position: fixed;
+  position: absolute;
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
   grid-template:
-    'hamburger brand tools' var(--nav-height)
+    'brand brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
   gap: 0 24px;
@@ -58,7 +63,7 @@ header nav a:any-link {
 header nav .nav-hamburger {
   grid-area: hamburger;
   height: 22px;
-  display: flex;
+  display: none;
   align-items: center;
 }
 
@@ -145,8 +150,9 @@ header .nav-brand {
 }
 
 header nav .nav-brand img {
-  width: 128px;
+  width: 200px;
   height: auto;
+  display: block;
 }
 
 /* sections */
@@ -182,6 +188,11 @@ header nav .nav-sections ul > li > ul > li {
 }
 
 @media (width >= 900px) {
+  header nav .nav-brand img {
+    width: auto;
+    height: 64px;
+  }
+
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -265,4 +276,16 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+header nav .nav-tools p {
+  font-size: .75rem;
+  text-align: right;
+  font-weight: bold;
+}
+
+@media (width >= 900px) {
+  header nav .nav-tools p {
+    font-size: 1rem;
+  }
 }
