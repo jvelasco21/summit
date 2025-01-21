@@ -244,7 +244,7 @@ button:focus {
 
 button:disabled,
 button:disabled:hover {
-  background-color: var(--light-color);
+  background-color: unset;
   cursor: unset;
 }
 

@@ -14,7 +14,13 @@
   flex-basis: calc((100% / var(--cols, 1)) - (((var(--cols, 1) - 1) * var(--gap, 0)) / var(--cols, 1)));
 }
 
-.form .field-wrapper.text-area-wrapper {
+.form .form-message {
+  flex-basis: 100%;
+  background-color: var(--coral);
+  padding: .25rem .5rem;
+}
+
+.form .field-wrapper.multiline-wrapper {
   flex-basis: 100%;
 }
 
