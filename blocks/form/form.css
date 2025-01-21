@@ -1,7 +1,26 @@
+.form form {
+  --cols: 1;
+  --gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  margin: 3rem 0;
+}
+
 .form .field-wrapper {
   display: grid;
   grid-auto-flow: row;
   align-items: center;
+  flex-basis: calc((100% / var(--cols, 1)) - (((var(--cols, 1) - 1) * var(--gap, 0)) / var(--cols, 1)));
+}
+
+.form .field-wrapper.text-area-wrapper {
+  flex-basis: 100%;
+}
+
+.form .field-wrapper.submit-wrapper {
+  flex-basis: 100%;
+  justify-content: center;
 }
 
 .form fieldset {
@@ -10,11 +29,6 @@
   margin: 0;
   border: none;
   padding: 0;
-}
-
-.form form > .field-wrapper + .field-wrapper,
-.form form fieldset .field-wrapper + .field-wrapper {
-  margin-top: 24px;
 }
 
 .form form > .selection-wrapper + .selection-wrapper,
@@ -43,9 +57,9 @@
 
 .form label,
 .form fieldset > legend {
-  margin-bottom: 0.25em;
-  font-size: var(--body-font-size-s);
-  font-weight: 700;
+  margin-bottom: 0.25rem;
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
 }
 
 .form .selection-wrapper label {
@@ -71,6 +85,7 @@
 
 .form textarea {
   resize: vertical;
+  min-height: 200px;
 }
 
 .form input:hover,
@@ -91,22 +106,12 @@
 }
 
 @media (width >= 600px) {
-  .form input,
-  .form select,
-  .form textarea {
-    max-width: 50vw;
+  .form form {
+    --cols: 2;
   }
 
   .form .button {
     max-width: max-content;
-  }
-}
-
-@media (width >= 900px) {
-  .form input,
-  .form select,
-  .form textarea {
-    max-width: 33vw;
   }
 }
 
@@ -118,8 +123,8 @@
 
 .form label[data-required]::after {
   content: '*';
-  color: firebrick;
-  margin-inline-start: 1ch;
+  color: var(--coral);
+  margin-inline-start: .5ch;
 }
 
 .form .toggle-wrapper .switch {
