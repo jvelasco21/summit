@@ -16,5 +16,5 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: |
-        echo "FIREFLY_SERVICES_CLIENT_ID: ${{ vars.FIREFLY_SERVICES_CLIENT_ID }}"
+        echo "FIREFLY_SERVICES_CLIENT_ID: ${{ vars.FIREFLY_SERVICES_CLIENT_ID }} also $FIREFLY_SERVICES_CLIENT_ID"
         node -e "console.log(process.env.FIREFLY_SERVICES_CLIENT_ID)"
