@@ -16,4 +16,4 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - name: Firefly Client ID
-      run: echo "FIREFLY_SERVICES_CLIENT_ID: ${{ vars.FIREFLY_SERVICES_CLIENT_ID }} also $FIREFLY_SERVICES_CLIENT_ID"
+      run: echo "FireFly ID is ${{ vars.FIREFLY_SERVICES_CLIENT_ID }} or $FIREFLY_SERVICES_CLIENT_ID"
