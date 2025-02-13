@@ -1,3 +1,8 @@
 .generated-image {
   text-align: center;
 }
+
+.generated-image img {
+  max-width: 800px;
+  margin: 3rem auto 2rem;
+}

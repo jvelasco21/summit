@@ -208,7 +208,13 @@ async function generateImage(fireflyAccessToken, formDetails) {
     // Access the generated image URL
     const imageUrl = response.data.outputs[0].image.url;
     console.log(`You can view the generated image at: ${imageUrl}`);
-    sessionStorage.setItem('generatedImage', imageUrl)
+    
+    if (sessionStorage.getItem(generatedImage) !== null) {
+      sessionStorage.removeItem('generatedImage');
+      sessionStorage.setItem('generatedImage', imageUrl);
+    } else {
+      sessionStorage.setItem('generatedImage', imageUrl);
+    }
   } catch (error) {
     console.error('Error during generateImage:', error.response.data);
   }
