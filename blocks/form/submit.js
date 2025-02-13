@@ -1,5 +1,8 @@
 import { DEFAULT_THANK_YOU_MESSAGE, getRouting, getSubmitBaseUrl } from './constant.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 
+const placeholders = await fetchPlaceholders();
+const { fireflyId, fireflySecret } = placeholders;
 let formDetails = '';
 
 export function submitSuccess(e, form) {
@@ -147,18 +150,23 @@ export async function handleSubmit(e, form, captcha) {
   }
 }
 
-function triggerImg(formDetails) {
+/* function triggerImg(formDetails) {
   (async () => {
     const accessToken = await retrieveAccessToken();
-    await generateImage(accessToken, formDetails);
+    await generateImage(accessToken);
   })();
-}
+} */
+
+  (async () => {
+    const accessToken = await retrieveAccessToken();
+    await generateImage(accessToken);
+  })();
 
 async function retrieveAccessToken() {
   const data = new URLSearchParams({
     grant_type: 'client_credentials',
-    client_id: $FIREFLY_SERVICES_CLIENT_ID,
-    client_secret: $FIREFLY_SERVICES_CLIENT_SECRET,
+    client_id: fireflyId,
+    client_secret: fireflySecret,
     scope: 'openid,AdobeID,session,additional_info,read_organizations,firefly_api,ff_apis',
   });
 
@@ -182,12 +190,12 @@ async function generateImage(accessToken, formDetails) {
   const headers = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
-    'x-api-key': $FIREFLY_SERVICES_CLIENT_ID,
+    'x-api-key': fireflyId,
     Authorization: `Bearer ${accessToken}`,
   };
 
   const data = {
-    prompt: formDetails, // Replace with your actual prompt
+    prompt: 'donkey wearing ice skates', // Replace with your actual prompt
   };
 
   const config = {
