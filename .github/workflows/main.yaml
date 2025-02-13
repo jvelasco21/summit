@@ -16,7 +16,7 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - name: Firefly Client ID
-      run: echo "FireFly ID is $FIREFLY_SERVICES_CLIENT_ID"
+      run: echo "Firefly ID is $FIREFLY_SERVICES_CLIENT_ID"
     
     - name: Firefly Client Secret
-      run: echo "FireFly ID is $FIREFLY_SERVICES_CLIENT_SECRET"
+      run: echo "Firefly ID is $FIREFLY_SERVICES_CLIENT_SECRET"
