@@ -136,8 +136,10 @@ export async function handleSubmit(e, form, captcha) {
       if (form.dataset.source === 'sheet') {
         formDetails = form.querySelector("#details").value;
         triggerImg(formDetails);
-        
-        await submitDocBasedForm(form, captcha);
+
+        setTimeout(function() {
+          submitDocBasedForm(form, captcha);
+        }, 5000);
       }
     }
   } else {
