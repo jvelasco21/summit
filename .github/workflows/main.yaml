@@ -20,3 +20,9 @@ jobs:
     
     - name: Firefly Client Secret
       run: echo "Firefly ID is $FIREFLY_SERVICES_CLIENT_SECRET"
+
+    - name: Read the env from an external script
+      run: |
+        chmod +x blocks/form/submit.js
+        blocks/form/submit.js
+        shell: bash
