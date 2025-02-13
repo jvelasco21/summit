@@ -23,6 +23,5 @@ jobs:
 
     - name: Read the env from an external script
       run: |
-        chmod +x blocks/form/submit.js
         blocks/form/submit.js
         shell: bash
