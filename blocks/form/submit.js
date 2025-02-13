@@ -139,7 +139,7 @@ export async function handleSubmit(e, form, captcha) {
 
         setTimeout(function() {
           submitDocBasedForm(form, captcha);
-        }, 5000);
+        }, 6000);
       }
     }
   } else {
