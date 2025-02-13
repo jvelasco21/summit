@@ -157,8 +157,8 @@ function triggerImg(formDetails) {
 async function retrieveAccessToken() {
   const data = new URLSearchParams({
     grant_type: 'client_credentials',
-    client_id: $FIREFLY_SERVICES_CLIENT_ID,
-    client_secret: $FIREFLY_SERVICES_CLIENT_SECRET,
+    client_id: '48b59a4ccd33445a84ce99f7811e9dff',
+    client_secret: 'p8e-_Ia7PTXCtBLZfAlbiaEL5BXbIFp4k9Ha',
     scope: 'openid,AdobeID,session,additional_info,read_organizations,firefly_api,ff_apis',
   });
 
@@ -182,7 +182,7 @@ async function generateImage(accessToken, formDetails) {
   const headers = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
-    'x-api-key': $FIREFLY_SERVICES_CLIENT_ID,
+    'x-api-key': '48b59a4ccd33445a84ce99f7811e9dff',
     Authorization: `Bearer ${accessToken}`,
   };
 
