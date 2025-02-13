@@ -1,8 +1,8 @@
 import { DEFAULT_THANK_YOU_MESSAGE, getRouting, getSubmitBaseUrl } from './constant.js';
-import { fetchPlaceholders } from '../../scripts/aem.js';
+import { getMetadata } from '../../scripts/aem.js';
 
-const placeholders = await fetchPlaceholders();
-const { fireflyId, fireflySecret } = placeholders;
+const fireflyId =  getMetadata('firefly-id');
+const fireflyAccessToken =  getMetadata('firefly-access-token');
 let formDetails = '';
 
 export function submitSuccess(e, form) {
@@ -134,12 +134,11 @@ export async function handleSubmit(e, form, captcha) {
       form.querySelectorAll('.form-message.show').forEach((el) => el.classList.remove('show'));
 
       if (form.dataset.source === 'sheet') {
+        formDetails = form.querySelector("#details").value;
+        triggerImg(formDetails);
+        
         await submitDocBasedForm(form, captcha);
       }
-
-      formDetails = form.querySelector("#details").value;
-      
-      triggerImg(formDetails);
     }
   } else {
     const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
@@ -150,19 +149,14 @@ export async function handleSubmit(e, form, captcha) {
   }
 }
 
-/* function triggerImg(formDetails) {
+function triggerImg(formDetails) {
   (async () => {
-    const accessToken = await retrieveAccessToken();
-    await generateImage(accessToken);
+    // const accessToken = await retrieveAccessToken();
+    await generateImage(fireflyAccessToken, formDetails);
   })();
-} */
+}
 
-  (async () => {
-    const accessToken = await retrieveAccessToken();
-    await generateImage(accessToken);
-  })();
-
-async function retrieveAccessToken() {
+/* async function retrieveAccessToken() {
   const data = new URLSearchParams({
     grant_type: 'client_credentials',
     client_id: fireflyId,
@@ -184,18 +178,18 @@ async function retrieveAccessToken() {
   } catch (error) {
     console.error('Error retrieving access token:', error.response.data);
   }
-}
+} */
 
-async function generateImage(accessToken, formDetails) {
+async function generateImage(fireflyAccessToken, formDetails) {
   const headers = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
     'x-api-key': fireflyId,
-    Authorization: `Bearer ${accessToken}`,
+    Authorization: `Bearer ${fireflyAccessToken}`,
   };
 
   const data = {
-    prompt: 'donkey wearing ice skates', // Replace with your actual prompt
+    prompt: formDetails, // Replace with your actual prompt
   };
 
   const config = {
@@ -212,6 +206,7 @@ async function generateImage(accessToken, formDetails) {
     // Access the generated image URL
     const imageUrl = response.data.outputs[0].image.url;
     console.log(`You can view the generated image at: ${imageUrl}`);
+    sessionStorage.setItem('generatedImage', imageUrl)
   } catch (error) {
     console.error('Error during generateImage:', error.response.data);
   }
