@@ -4,6 +4,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FIREFLY_SERVICES_CLIENT_ID: ${{ vars.FIREFLY_SERVICES_CLIENT_ID }}
+      FIREFLY_SERVICES_CLIENT_SECRET: ${{ vars.FIREFLY_SERVICES_CLIENT_SECRET }}
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js 20
@@ -12,3 +15,6 @@ jobs:
         node-version: 20
     - run: npm ci
     - run: npm run lint
+    - run: |
+        echo "FIREFLY_SERVICES_CLIENT_ID: $FIREFLY_SERVICES_CLIENT_ID"
+        node -e "console.log(process.env.FIREFLY_SERVICES_CLIENT_ID)"
