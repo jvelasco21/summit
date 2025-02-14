@@ -3,7 +3,6 @@ import { getMetadata } from '../../scripts/aem.js';
 
 const fireflyId =  getMetadata('firefly-id');
 const fireflyAccessToken =  getMetadata('firefly-access-token');
-let formDetails = '';
 
 export function submitSuccess(e, form) {
   const { payload } = e;
@@ -134,9 +133,33 @@ export async function handleSubmit(e, form, captcha) {
       form.querySelectorAll('.form-message.show').forEach((el) => el.classList.remove('show'));
 
       if (form.dataset.source === 'sheet') {
-        formDetails = form.querySelector("#details").value;
+        const formPrompt1Label = form.querySelector("[for=prompt1]").innerText;
+        const formPrompt1Input = form.querySelector("#prompt1").value;
+        const formPrompt2Label = form.querySelector("[for=prompt2]").innerText;
+        const formPrompt2Input = form.querySelector("#prompt2").value;
+        const formPrompt3Label = form.querySelector("[for=prompt3]").innerText;
+        const formPrompt3Input = form.querySelector("#prompt3").value;
+        const formPrompt4Label = form.querySelector("[for=prompt4]").innerText;
+        const formPrompt4Input = form.querySelector("#prompt4").value;
+        const formPrompt5Label = form.querySelector("[for=prompt5]").innerText;
+        const formPrompt5Input = form.querySelector("#prompt5").value;
 
-        await generateImage(fireflyAccessToken, formDetails, form, captcha);
+        const formPrompts = [
+          formPrompt1Label,
+          formPrompt1Input,
+          formPrompt2Label,
+          formPrompt2Input,
+          formPrompt3Label,
+          formPrompt3Input,
+          formPrompt4Label,
+          formPrompt4Input,
+          formPrompt5Label,
+          formPrompt5Input
+        ].join(' ');
+
+        console.log(formPrompts);
+
+        await generateImage(fireflyAccessToken, formPrompts, form, captcha);
 
         /* setTimeout(function() {
           submitDocBasedForm(form, captcha);
@@ -152,7 +175,7 @@ export async function handleSubmit(e, form, captcha) {
   }
 }
 
-async function generateImage(fireflyAccessToken, formDetails, form, captcha) {
+async function generateImage(fireflyAccessToken, formPrompts, form, captcha) {
   const headers = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -161,7 +184,7 @@ async function generateImage(fireflyAccessToken, formDetails, form, captcha) {
   };
 
   const data = {
-    prompt: formDetails, // Replace with your actual prompt
+    prompt: formPrompts,
   };
 
   const config = {
