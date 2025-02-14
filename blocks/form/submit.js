@@ -135,11 +135,7 @@ export async function handleSubmit(e, form, captcha) {
 
       if (form.dataset.source === 'sheet') {
         formDetails = form.querySelector("#details").value;
-        triggerImg(formDetails);
-
-        setTimeout(function() {
-          submitDocBasedForm(form, captcha);
-        }, 6000);
+        triggerImg(formDetails).then(submitDocBasedForm(form, captcha));
       }
     }
   } else {
@@ -152,10 +148,13 @@ export async function handleSubmit(e, form, captcha) {
 }
 
 function triggerImg(formDetails) {
-  (async () => {
-    // const accessToken = await retrieveAccessToken();
-    await generateImage(fireflyAccessToken, formDetails);
-  })();
+  return new Promise(function(resolve, reject) {
+    (async () => {
+      // const accessToken = await retrieveAccessToken();
+      await generateImage(fireflyAccessToken, formDetails);
+    })();
+    resolve();
+  });
 }
 
 /* async function retrieveAccessToken() {
