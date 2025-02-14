@@ -111,6 +111,10 @@
   width: max-content;
 }
 
+.form .hidden-wrapper {
+  display: none;
+}
+
 .form form[data-submitting="true"] .button::after {
   content: '';
   display: block;

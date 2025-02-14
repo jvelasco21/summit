@@ -135,7 +135,12 @@ export async function handleSubmit(e, form, captcha) {
 
       if (form.dataset.source === 'sheet') {
         formDetails = form.querySelector("#details").value;
-        triggerImg(formDetails).then(submitDocBasedForm(form, captcha));
+
+        await generateImage(fireflyAccessToken, formDetails, form, captcha);
+
+        /* setTimeout(function() {
+          submitDocBasedForm(form, captcha);
+        }, 6000); */
       }
     }
   } else {
@@ -147,41 +152,7 @@ export async function handleSubmit(e, form, captcha) {
   }
 }
 
-function triggerImg(formDetails) {
-  return new Promise(function(resolve, reject) {
-    (async () => {
-      // const accessToken = await retrieveAccessToken();
-      await generateImage(fireflyAccessToken, formDetails);
-    })();
-    resolve();
-  });
-}
-
-/* async function retrieveAccessToken() {
-  const data = new URLSearchParams({
-    grant_type: 'client_credentials',
-    client_id: fireflyId,
-    client_secret: fireflySecret,
-    scope: 'openid,AdobeID,session,additional_info,read_organizations,firefly_api,ff_apis',
-  });
-
-  const config = {
-    method: 'post',
-    url: 'https://ims-na1.adobelogin.com/ims/token/v3',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    data: data,
-  };
-
-  try {
-    const response = await axios.request(config);
-    console.log('Access Token Retrieved');
-    return response.data.access_token;
-  } catch (error) {
-    console.error('Error retrieving access token:', error.response.data);
-  }
-} */
-
-async function generateImage(fireflyAccessToken, formDetails) {
+async function generateImage(fireflyAccessToken, formDetails, form, captcha) {
   const headers = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -209,6 +180,9 @@ async function generateImage(fireflyAccessToken, formDetails) {
     console.log(`You can view the generated image at: ${imageUrl}`);
     
     sessionStorage.setItem('generatedImage', imageUrl);
+    form.querySelector('#image').value = imageUrl;
+
+    submitDocBasedForm(form, captcha);
   } catch (error) {
     console.error('Error during generateImage:', error.response.data);
   }
