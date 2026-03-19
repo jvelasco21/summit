@@ -111,12 +111,16 @@ async function submitDocBasedForm(form, captcha) {
       body: JSON.stringify(body),
     });
     if (response.ok) {
+      console.log('test');
       submitSuccess(response, form);
     } else {
+      console.log('test2');
       const error = await response.text();
       throw new Error(error);
     }
   } catch (error) {
+    
+      console.log('test3');
     submitFailure(error, form);
   }
 }
@@ -161,9 +165,7 @@ export async function handleSubmit(e, form, captcha) {
 
         // await generateImage(fireflyAccessToken, formPrompts, form, captcha);
 
-        setTimeout(function() {
-          submitDocBasedForm(form, captcha);
-        }, 1000);
+        submitDocBasedForm(form, captcha);
       }
     }
   } else {
