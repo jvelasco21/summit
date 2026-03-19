@@ -159,7 +159,7 @@ export async function handleSubmit(e, form, captcha) {
 
         console.log(formPrompts);
 
-        await generateImage(fireflyAccessToken, formPrompts, form, captcha);
+        // await generateImage(fireflyAccessToken, formPrompts, form, captcha);
 
         /* setTimeout(function() {
           submitDocBasedForm(form, captcha);
