@@ -161,9 +161,9 @@ export async function handleSubmit(e, form, captcha) {
 
         // await generateImage(fireflyAccessToken, formPrompts, form, captcha);
 
-        /* setTimeout(function() {
+        setTimeout(function() {
           submitDocBasedForm(form, captcha);
-        }, 6000); */
+        }, 1000);
       }
     }
   } else {
